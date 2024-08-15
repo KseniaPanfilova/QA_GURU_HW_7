@@ -25,12 +25,13 @@ class TestProducts:
 
     def test_product_buy(self, product):
         # TODO напишите проверки на метод buy
-        pass
+        product.buy(700)
+        assert product.quantity == 300
 
     def test_product_buy_more_than_available(self, product):
-        # TODO напишите проверки на метод buy,
-        #  которые ожидают ошибку ValueError при попытке купить больше, чем есть в наличии
-        pass
+        with pytest.raises(ValueError, match='Недостаточное количество товара на складе'):
+            product.buy(1100)
+            assert product.check_quantity(1100)
 
 
 class TestCart:
