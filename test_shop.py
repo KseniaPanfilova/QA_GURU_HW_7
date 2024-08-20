@@ -41,3 +41,17 @@ class TestCart:
         На некоторые методы у вас может быть несколько тестов.
         Например, негативные тесты, ожидающие ошибку (используйте pytest.raises, чтобы проверить это)
     """
+    def test_add_product_to_cart(self, product):
+        ...
+
+    def test_remove_product_from_cart(self, product):
+        ...
+
+    def test_clear_cart(self, product):
+        ...
+
+    def test_get_total_price_of_cart(self, product):
+        ...
+
+    def test_buy_cart(self, product):
+        ...
