@@ -57,7 +57,7 @@ class TestCart:
         assert product.quantity == 990
 
     def test_buy_cart_more_than_available(self, product, cart):
-        cart.add_product(product, 1000)
+        cart.add_product(product, 1100)
         with pytest.raises(ValueError, match='Недостаточное количество товара на складе'):
             cart.buy()
             assert ValueError
