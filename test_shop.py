@@ -3,12 +3,17 @@
 """
 import pytest
 
-from models import Product
+from models import Product, Cart
 
 
 @pytest.fixture
 def product():
     return Product("book", 100, "This is a book", 1000)
+
+
+@pytest.fixture()
+def cart():
+    return Cart()
 
 
 class TestProducts:
@@ -41,17 +46,20 @@ class TestCart:
         На некоторые методы у вас может быть несколько тестов.
         Например, негативные тесты, ожидающие ошибку (используйте pytest.raises, чтобы проверить это)
     """
-    def test_add_product_to_cart(self, product):
+
+    def test_add_product_to_cart(self, product, cart):
+        cart.add_product(product)
+        print(cart.products.items())
+        assert cart.products.values() == 1
+
+    def test_remove_product_from_cart(self, product, cart):
         ...
 
-    def test_remove_product_from_cart(self, product):
+    def test_clear_cart(self, product, cart):
         ...
 
-    def test_clear_cart(self, product):
+    def test_get_total_price_of_cart(self, product, cart):
         ...
 
-    def test_get_total_price_of_cart(self, product):
-        ...
-
-    def test_buy_cart(self, product):
+    def test_buy_cart(self, product, cart):
         ...

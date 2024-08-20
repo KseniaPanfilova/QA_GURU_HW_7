@@ -10,15 +10,16 @@ def test_test():
     # item.buy(15)
     # print(item.quantity)
     # print(item.quantity)
-    # cart = Cart()
-    # cart.add_product(item)
+    cart = Cart()
+    cart.add_product(item)
     # cart.add_product(item)
     # print(cart.get_total_price())
     # cart.buy()
     # print(item.quantity)
-    # cart1 = {}
+    cart1 = {}
+    cart.add_product(item)
     # cart1 = {item: 1}
-    # print(cart1[item])
+    print(cart1[item])
 
-    print(item.buy(10))
-    print(item.quantity)
+    # print(item.buy(10))
+    # print(item.quantity)
