@@ -11,9 +11,7 @@ class Product:
         self.quantity = quantity
 
     def check_quantity(self, quantity) -> bool:
-        if self.quantity >= quantity:
-            return True
-        return False
+        return self.quantity >= quantity
 
     def buy(self, quantity):
         if self.check_quantity(quantity) is False:
@@ -35,13 +33,16 @@ class Cart:
         self.products = {}
 
     def add_product(self, product: Product, buy_count=1):
-        if product in self.products:
-            self.products[product] += buy_count
+        if buy_count <= 0:
+            raise ValueError('Количество товара не может быть равно или меньше 0')
         else:
-            self.products[product] = buy_count
+            if product in self.products:
+                self.products[product] += buy_count
+            else:
+                self.products[product] = buy_count
 
     def remove_product(self, product: Product, remove_count=None):
-        if remove_count is None or remove_count > self.products[product]:
+        if remove_count is None or remove_count >= self.products[product]:
             del self.products[product]
         else:
             self.products[product] -= remove_count
@@ -56,5 +57,12 @@ class Cart:
         return total_price
 
     def buy(self):
+        check_cart = True
         for key, value in self.products.items():
-            key.buy(value)
+            if key.check_quantity(value) is False:
+                check_cart = False
+        if check_cart is False:
+            raise ValueError('Не все товары в достаточном количестве')
+        else:
+            for key, value in self.products.items():
+                key.buy(value)
